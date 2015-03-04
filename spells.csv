@@ -1,0 +1,17 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE SPELLS (
+Name text primary key,
+Level integer, 
+School text, 
+CastingTime text,
+Duration text,
+Range text,
+Description text,
+AtHigherLevels integer, 
+Ritual integer, 
+Concentration integer, 
+Damaging integer, 
+Complicated integer);
+INSERT INTO "SPELLS" VALUES('Acid Splash',0,'Conjuration','1 action','Instantaneous','60 feet',NULL,0,0,0,1,0);
+COMMIT;
