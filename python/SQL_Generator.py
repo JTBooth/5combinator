@@ -119,7 +119,7 @@ outputEntry.grid(row=8, columnspan=4)
 
 def produceOutput():
     textWithoutNewLines = descriptionText.get(1.0, Tkinter.END).replace("\n", " ")
-    response = "INSERT INTO \"SPELLS\" VALUES("
+    response = "INSERT INTO SPELLS VALUES("
     response += "\"" + nameString.get() + "\", "
     response += "\"" + levelString.get() + "\", "
     response += "\"" + schoolString.get() + "\", "
