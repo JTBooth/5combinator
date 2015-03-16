@@ -1,3 +1,5 @@
+from Tkconstants import END
+
 __author__ = 'rbooth'
 
 import Tkinter
@@ -73,16 +75,47 @@ complicatedCheck = Tkinter.Checkbutton(checkboxFrame, variable=complicatedBool)
 complicatedLabel.grid(row=0, column=4)
 complicatedCheck.grid(row=1, column=4)
 
+###
+
+componentFrame = Tkinter.Frame(root)
+componentFrame.grid(row=4, column=0, columnspan=5)
+
+verbalLabel = Tkinter.Label(componentFrame, text="V")
+verbalBool = Tkinter.IntVar()
+verbalCheck = Tkinter.Checkbutton(componentFrame, variable=verbalBool)
+verbalLabel.grid(row=0, column=0)
+verbalCheck.grid(row=1, column=0)
+
+somaticLabel = Tkinter.Label(componentFrame, text="S")
+somaticBool = Tkinter.IntVar()
+somaticCheck = Tkinter.Checkbutton(componentFrame, variable=somaticBool)
+somaticLabel.grid(row=0, column=1)
+somaticCheck.grid(row=1, column=1)
+
+materialLabel = Tkinter.Label(componentFrame, text="M")
+materialBool = Tkinter.IntVar()
+materialCheck = Tkinter.Checkbutton(componentFrame, variable=materialBool)
+materialLabel.grid(row=0, column=2)
+materialCheck.grid(row=1, column=2)
+
+componentsLabel = Tkinter.Label(componentFrame, text="Components")
+componentsString = Tkinter.StringVar()
+componentsEntry = Tkinter.Entry(componentFrame, textvariable=componentsString)
+componentsLabel.grid(row=0, column=3)
+componentsEntry.grid(row=1, column=3)
+
+###
+
 descriptionLabel = Tkinter.Label(root, text="Paste description here:")
 descriptionText = Tkinter.Text(root, borderwidth=4, relief=Tkinter.SUNKEN)
-descriptionLabel.grid(row=4, columnspan=2)
-descriptionText.grid(row=5, columnspan=4)
+descriptionLabel.grid(row=5, columnspan=2)
+descriptionText.grid(row=6, columnspan=4)
 
 outputLabel = Tkinter.Label(root, text="Your SQL command appears here:")
 outputString = Tkinter.StringVar()
 outputEntry = Tkinter.Entry(root, width=70, textvariable=outputString)
-outputLabel.grid(row=6, columnspan=2)
-outputEntry.grid(row=7, columnspan=4)
+outputLabel.grid(row=7, columnspan=2)
+outputEntry.grid(row=8, columnspan=4)
 
 def produceOutput():
     textWithoutNewLines = descriptionText.get(1.0, Tkinter.END).replace("\n", " ")
@@ -98,10 +131,33 @@ def produceOutput():
     response += str(ritualBool.get()) + ", "
     response += str(concentrationBool.get()) + ", "
     response += str(damagingBool.get()) + ", "
-    response += str(complicatedBool.get()) + ");"
+    response += str(complicatedBool.get()) + ", "
+    response += str(verbalBool.get()) + ", "
+    response += str(somaticBool.get()) + ", "
+    response += str(materialBool.get()) + ", "
+    response += "\"" + componentsString.get() + "\");"
+
     outputString.set(response)
 
 outputButton = Tkinter.Button(root, text="Produce SQL command", command=produceOutput)
-outputButton.grid(row=6, column=2)
+outputButton.grid(row=7, column=2)
+
+def clearFields():
+    nameString.set("")
+    levelString.set("")
+    schoolString.set("")
+    castingTimeString.set("")
+    durationString.set("")
+    rangeString.set("")
+    descriptionText.delete(1.0, END);
+    atHigherLevelsBool.set(0)
+    ritualBool.set(0)
+    concentrationBool.set(0)
+    damagingBool.set(0)
+    complicatedBool.set(0)
+
+
+clearButton = Tkinter.Button(root, text="Clear all fields", command=clearFields)
+clearButton.grid(row=7, column=3)
 
 root.mainloop()
