@@ -155,6 +155,7 @@ def clearFields():
     concentrationBool.set(0)
     damagingBool.set(0)
     complicatedBool.set(0)
+    componentsString.set("")
 
 
 clearButton = Tkinter.Button(root, text="Clear all fields", command=clearFields)
