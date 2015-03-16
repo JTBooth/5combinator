@@ -85,6 +85,7 @@ outputLabel.grid(row=6, columnspan=2)
 outputEntry.grid(row=7, columnspan=4)
 
 def produceOutput():
+    textWithoutNewLines = descriptionText.get(1.0, Tkinter.END).replace("\n", " ")
     response = "INSERT INTO \"SPELLS\" VALUES("
     response += "\"" + nameString.get() + "\", "
     response += "\"" + levelString.get() + "\", "
@@ -92,7 +93,7 @@ def produceOutput():
     response += "\"" + castingTimeString.get() + "\", "
     response += "\"" + durationString.get() + "\", "
     response += "\"" + rangeString.get() + "\", "
-    response += "\"" + descriptionText.get(1.0, Tkinter.END) + "\", "
+    response += "\"" + textWithoutNewLines + "\", "
     response += str(atHigherLevelsBool.get()) + ", "
     response += str(ritualBool.get()) + ", "
     response += str(concentrationBool.get()) + ", "
