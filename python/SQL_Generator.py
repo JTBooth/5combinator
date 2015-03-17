@@ -117,8 +117,12 @@ outputEntry = Tkinter.Entry(root, width=70, textvariable=outputString)
 outputLabel.grid(row=7, columnspan=2)
 outputEntry.grid(row=8, columnspan=4)
 
+def stripNewLines(text):
+    return text.replace("\n", " ")
+
 def produceOutput():
-    textWithoutNewLines = descriptionText.get(1.0, Tkinter.END).replace("\n", " ")
+    descriptionWithoutNewlines = stripNewLines(descriptionText.get(1.0, Tkinter.END))
+    componentsWithoutNewLines = stripNewLines(componentsString.get())
     response = "INSERT INTO SPELLS VALUES("
     response += "\"" + nameString.get() + "\", "
     response += "\"" + levelString.get() + "\", "
@@ -126,7 +130,7 @@ def produceOutput():
     response += "\"" + castingTimeString.get() + "\", "
     response += "\"" + durationString.get() + "\", "
     response += "\"" + rangeString.get() + "\", "
-    response += "\"" + textWithoutNewLines + "\", "
+    response += "\"" + descriptionWithoutNewlines + "\", "
     response += str(atHigherLevelsBool.get()) + ", "
     response += str(ritualBool.get()) + ", "
     response += str(concentrationBool.get()) + ", "
@@ -135,7 +139,7 @@ def produceOutput():
     response += str(verbalBool.get()) + ", "
     response += str(somaticBool.get()) + ", "
     response += str(materialBool.get()) + ", "
-    response += "\"" + componentsString.get() + "\");"
+    response += "\"" + componentsWithoutNewLines.get() + "\");"
 
     outputString.set(response)
 
@@ -155,6 +159,9 @@ def clearFields():
     concentrationBool.set(0)
     damagingBool.set(0)
     complicatedBool.set(0)
+    verbalBool.set(0)
+    somaticBool.set(0)
+    materialBool.set(0)
     componentsString.set("")
 
 
