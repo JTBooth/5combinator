@@ -139,7 +139,7 @@ def produceOutput():
     response += str(verbalBool.get()) + ", "
     response += str(somaticBool.get()) + ", "
     response += str(materialBool.get()) + ", "
-    response += "\"" + componentsWithoutNewLines.get() + "\");"
+    response += "\"" + componentsWithoutNewLines + "\");"
 
     outputString.set(response)
 
@@ -153,7 +153,7 @@ def clearFields():
     castingTimeString.set("")
     durationString.set("")
     rangeString.set("")
-    descriptionText.delete(1.0, END);
+    descriptionText.delete(1.0, Tkinter.END);
     atHigherLevelsBool.set(0)
     ritualBool.set(0)
     concentrationBool.set(0)
